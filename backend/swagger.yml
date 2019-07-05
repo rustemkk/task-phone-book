@@ -1,0 +1,93 @@
+openapi: "3.0.0"
+
+info:
+  description: "PhoneBook API"
+  version: "1.0.0"
+  title: "PhoneBook"
+
+servers:
+  - url: "/api"
+
+tags:
+  - name: "contacts"
+    description: "Everything about contacts"
+
+paths:
+
+  /contacts:
+    get:
+      tags:
+        - "contacts"
+      summary: "Get contacts"
+      parameters:
+        - in: query
+          name: orderBy
+          schema:
+            type: string
+        - in: query
+          name: orderDirection
+          schema:
+            type: string
+        - in: query
+          name: count
+          schema:
+            type: string
+        - in: query
+          name: offset
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Contacts array"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Contact"
+
+  /contacts/create:
+    post:
+      tags:
+        - "contacts"
+      summary: "Create contact"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: "string"
+                phone:
+                  type: "string"
+      responses:
+        200:
+          description: "Created contact"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Contact"
+
+components:
+  schemas:
+    Contact:
+      type: "object"
+      required:
+        - id
+      properties:
+        id:
+          type: "integer"
+        name:
+          type: "string"
+        phone:
+          type: "string"
+        createdAt:
+          type: "string"
+        updatedAt:
+          type: "string"
+
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

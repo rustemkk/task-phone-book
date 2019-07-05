@@ -1,0 +1,33 @@
+{
+  "name": "phone-book-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "db:migrate": "sequelize db:create && sequelize db:migrate && sequelize db:seed:all",
+    "start": "export NODE_ENV=development && npm run db:migrate && ts-node index",
+    "start:dev": "export NODE_ENV=development && npm run db:migrate && nodemon",
+    "test:contacts": "export NODE_ENV=test && npm run db:migrate && ts-mocha contacts/contacts.controller.e2e.ts --exit"
+  },
+  "author": "Rustem Islamuratov",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^3.0.0",
+    "@types/mocha": "^5.2.7",
+    "chai": "^4.2.0",
+    "koa": "^2.7.0",
+    "koa-body": "^4.1.0",
+    "koa-oas3": "^0.13.1",
+    "koa-router": "^7.4.0",
+    "lodash": "^4.17.11",
+    "mocha": "^6.1.4",
+    "mysql2": "^1.6.5",
+    "nodemon": "^1.19.1",
+    "sequelize": "^5.9.2",
+    "sequelize-cli": "^5.5.0",
+    "supertest": "^4.0.2",
+    "ts-mocha": "^6.0.0",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.2"
+  }
+}
