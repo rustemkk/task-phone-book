@@ -45,8 +45,6 @@ paths:
                 type: "array"
                 items:
                   $ref: "#/components/schemas/Contact"
-
-  /contacts/create:
     post:
       tags:
         - "contacts"
@@ -64,11 +62,49 @@ paths:
                   type: "string"
       responses:
         200:
-          description: "Created contact"
+          description: "Contact created"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Contact"
+
+  /contacts/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: "Contact id"
+    put:
+      tags:
+        - "contacts"
+      summary: "Update contact by id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: "string"
+                phone:
+                  type: "string"
+      responses:
+        200:
+          description: "Contact updated"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Contact"
+    delete:
+      tags:
+        - "contacts"
+      summary: "Delete contact by id"
+      responses:
+        200:
+          description: "Contact deleted"
 
 components:
   schemas:

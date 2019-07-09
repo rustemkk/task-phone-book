@@ -5,6 +5,7 @@ import db from './db.service';
 
 
 class TestService {
+  data: any = {};
   req;
   server;
 
@@ -19,26 +20,30 @@ class TestService {
     this.server.close();
   }
 
+  delete(url: string): Promise<any> {
+    return this.req
+      .del(url)
+      .set('Content-Type', 'application/json');
+  }
+
   get(url: string): Promise<any> {
-    const prom = this.req
+    return this.req
       .get(url)
       .set('Content-Type', 'application/json');
-    return prom;
   }
 
   post(url: string, body: object): Promise<any> {
-    const prom = this.req
+    return this.req
       .post(url)
       .send(JSON.stringify(body))
       .set('Content-Type', 'application/json');
-    return prom;
   }
 
-  delete(url: string): Promise<any> {
-    const prom = this.req
-      .del(url)
+  put(url: string, body: object): Promise<any> {
+    return this.req
+      .put(url)
+      .send(JSON.stringify(body))
       .set('Content-Type', 'application/json');
-    return prom;
   }
 
   async destroyTables(tableNames) {
