@@ -60,6 +60,9 @@ paths:
                   type: "string"
                 phone:
                   type: "string"
+              example:
+                name: "Gregory"
+                phone: "876876876876"
       responses:
         200:
           description: "Contact created"
@@ -105,6 +108,26 @@ paths:
       responses:
         200:
           description: "Contact deleted"
+
+  /contacts/importFile:
+    post:
+      tags:
+        - "contacts"
+      summary: "Import contacts from file"
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                strategy:
+                  type: string
+      responses:
+        200:
+          description: "File imported"
 
 components:
   schemas:

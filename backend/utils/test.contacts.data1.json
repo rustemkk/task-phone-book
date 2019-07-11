@@ -1,0 +1,14 @@
+{
+  "contacts": [
+    { "phone": "+12312323123", "name": "Alena" },
+    { "phone": "56783123", "name": "Bob" },
+    { "phone": "+5678", "name": "Bender" },
+    { "phone": "+956785678", "name": "Homer" },
+    { "phone": "345634563456", "name": "Frank" },
+    { "phone": "+8(888)8888123", "name": "Luke Skywalker 111" },
+    { "phone": "+5345634563456", "name": "Atlas" },
+    { "phone": "+134563456345", "name": "Mr. Bean" },
+    { "phone": "+3434556", "name": "Gnome" },
+    { "phone": "+111111111", "name": "Rustem" }
+  ]
+}

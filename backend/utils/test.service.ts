@@ -1,3 +1,4 @@
+import * as path from 'path';
 import * as request from 'supertest';
 
 import app from '../index';
@@ -37,6 +38,13 @@ class TestService {
       .post(url)
       .send(JSON.stringify(body))
       .set('Content-Type', 'application/json');
+  }
+
+  postFile(url: string, body: object, fileName: string): Promise<any> {
+    return this.req
+      .post(url)
+      .field(body)
+      .attach('file', path.join(__dirname, fileName));
   }
 
   put(url: string, body: object): Promise<any> {

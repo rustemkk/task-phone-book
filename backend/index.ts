@@ -21,7 +21,7 @@ export const init = async () => {
     each(allVerbRoutes, (middleware, path) => func.apply(router, [path, middleware]));
   });
   app
-    .use(koaBody())
+    .use(koaBody({ multipart: true }))
     .use(router.routes())
     .use(router.allowedMethods())
     .use(KoaOas({ file: `${__dirname}/swagger.yml`, uiEndpoint: '/', endpoint: '/openapi.json' }));

@@ -69,4 +69,43 @@ describe('Contacts e2e tests', () => {
     expect(res.body[0].name).to.equal('Luke Skywalker 111');
   });
 
+  it('Should upload/import file with contacts (sameNameStrategy)', async () => {
+    let res = await testService.postFile(
+      '/api/contacts/importFile',
+      { strategy: 'sameNameStrategy' },
+      'test.contacts.data1.json'
+    );
+
+    res = await testService.get('/api/contacts');
+    expect(res.body.length).to.equal(10);
+    expect(res.body[0].name).to.equal('Alena');
+    expect(res.body[7].name).to.equal('Luke Skywalker 111');
+    expect(res.body[7].phone).to.equal('+8(888)8888123');
+  });
+
+  it('Should upload/import file with contacts (samePhoneStrategy)', async () => {
+    let res = await testService.postFile(
+      '/api/contacts/importFile',
+      { strategy: 'samePhoneStrategy' },
+      'test.contacts.data2.json'
+    );
+
+    res = await testService.get('/api/contacts');
+    expect(res.body.length).to.equal(11);
+    expect(res.body[0].name).to.equal('Alena756');
+    expect(res.body[6].name).to.equal('Grober');
+  });
+
+  it('Should upload/import file with contacts (allNewStrategy)', async () => {
+    let res = await testService.postFile(
+      '/api/contacts/importFile',
+      { strategy: 'allNewStrategy' },
+      'test.contacts.data3.json'
+    );
+
+    res = await testService.get('/api/contacts');
+    expect(res.body.length).to.equal(13);
+    expect(res.body[9].name).to.equal('Kuku');
+  });
+
 });
