@@ -1,12 +1,12 @@
 const backendUrl = 'http://localhost:3000/api';
 
 export const callAPI = (method, path, body = {}) => {
-  // if (path === '/users/profilePicture/upload') {
-  //   return fetch(`${backendUrl}${path}`, {
-  //     method: 'POST',
-  //     body: body
-  //   });
-  // }
+  if (path === '/contacts/importFile') {
+    return fetch(`${backendUrl}${path}`, {
+      method: 'POST',
+      body: body
+    });
+  }
 
   // console.log(1, method, path, body);
   // console.log(2, `${backendUrl}${path}`);

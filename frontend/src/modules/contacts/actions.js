@@ -9,10 +9,11 @@ export const loadContacts = (orderBy, orderDirection, count, offset) => ({
   offset,
 })
 
-export const loadContactsSuccess = ({ entities: { contacts }, result }) => ({
+export const loadContactsSuccess = ({ entities: { contacts }, result }, isResetState) => ({
   type: contactsConstants.LOAD_CONTACTS_SUCCESS,
   contacts,
   contactsByIds: result,
+  isResetState,
 });
 
 export const createContact = (contact) => ({
@@ -38,4 +39,10 @@ export const deleteContact = (contactId) => ({
 export const deleteContactSuccess = (contactId) => ({
   type: contactsConstants.DELETE_CONTACT_SUCCESS,
   contactId,
+});
+
+export const importContactsFromFile = (strategy, file) => ({
+  type: contactsConstants.IMPORT_CONTACTS_FROM_FILE_REQUEST,
+  strategy,
+  file,
 });

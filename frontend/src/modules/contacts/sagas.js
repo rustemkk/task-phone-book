@@ -1,6 +1,8 @@
 import { put, takeEvery } from 'redux-saga/effects'
 import { normalize } from 'normalizr';
 
+import * as modalActions from 'modules/modals/actions';
+import * as modalsConstants from 'modules/modals/constants';
 import { callAPI } from 'utils';
 
 import * as contactsActions from './actions';
@@ -11,13 +13,13 @@ import { contactsSchema } from './schemas';
 function* loadContactsTask({ orderBy, orderDirection, count, offset }) {
   try {
     let url = '/contacts?';
-    url += orderBy ? `&orderBy=${orderBy}` : '';
-    url += orderDirection ? `&orderDirection=${orderDirection}` : '';
-    url += count ? `&count=${count}` : '';
-    url += offset ? `&offset=${offset}` : '';
+    // url += orderBy ? `&orderBy=${orderBy}` : '';
+    // url += orderDirection ? `&orderDirection=${orderDirection}` : '';
+    // url += count ? `&count=${count}` : '';
+    // url += offset ? `&offset=${offset}` : '';
     const contacts = yield callAPI('GET', url);
     const normalized = normalize(contacts, contactsSchema);
-    yield put(contactsActions.loadContactsSuccess(normalized));
+    yield put(contactsActions.loadContactsSuccess(normalized, true));
   } catch (err) {
     console.log('loadContactsTaskError', err);
   }
@@ -51,6 +53,20 @@ function* deleteContactTask({ contactId }) {
   }
 }
 
+function* importContactsFromFileTask({ strategy, file }) {
+  try {
+    const formData = new FormData();
+    formData.append('strategy', strategy);
+    formData.append('file', file);
+    const res = yield callAPI('POST', '/contacts/importFile', formData);
+    console.log('saga res', res);
+    yield put(contactsActions.loadContacts());
+    yield put(modalActions.hideModal(modalsConstants.IMPORT_MODAL));
+  } catch (err) {
+    console.log('importContactsFromFileTaskError', err);
+  }
+}
+
 function* watchLoadContacts() {
   yield takeEvery(contactsConstants.LOAD_CONTACTS_REQUEST, loadContactsTask)
 }
@@ -67,9 +83,14 @@ function* watchDeleteContact() {
   yield takeEvery(contactsConstants.DELETE_CONTACT_REQUEST, deleteContactTask)
 }
 
+function* watchImportContactsFromFile() {
+  yield takeEvery(contactsConstants.IMPORT_CONTACTS_FROM_FILE_REQUEST, importContactsFromFileTask)
+}
+
 export default [
   watchLoadContacts(),
   watchCreateContact(),
   watchUpdateContact(),
   watchDeleteContact(),
+  watchImportContactsFromFile(),
 ];

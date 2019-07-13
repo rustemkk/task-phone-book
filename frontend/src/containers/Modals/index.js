@@ -2,19 +2,22 @@ import { isFunction } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+import ClickOutHandler from 'react-onclickout';
 
 import ConfirmationModal from 'components/ConfirmationModal';
-import ContactModal from 'components/ContactModal';
 import SvgIcon from 'components/SvgIcon';
+import ContactModal from 'containers/ContactModal';
+import ImportModal from 'containers/ImportModal';
 import { hideModal } from 'modules/modals/actions';
-import * as modalTypes from 'modules/modals/constants';
+import * as modalsConstants from 'modules/modals/constants';
 
 import s from './index.module.scss';
 
 
 const MODAL_COMPONENTS = {
-  [modalTypes.CONFIRMATION_MODAL]: ConfirmationModal,
-  [modalTypes.CONTACT_MODAL]: ContactModal,
+  [modalsConstants.CONFIRMATION_MODAL]: ConfirmationModal,
+  [modalsConstants.CONTACT_MODAL]: ContactModal,
+  [modalsConstants.IMPORT_MODAL]: ImportModal,
 };
 
 const mapStateToProps = state => ({
@@ -36,10 +39,12 @@ const Modals = ({ modals, hideModal }) => {
     const Modal = MODAL_COMPONENTS[modalType];
     return (
       <div className={s.ModalBackground} key={modalType}>
-        <div className={s.Modal}>
-          <SvgIcon className={s.IconClose} name="close" onClick={() => handleHideModal(modalType, modalProps)} size={30} />
-          <Modal onHideModal={() => hideModal(modalType)} {...modalProps} />
-        </div>
+        <ClickOutHandler onClickOut={() => hideModal(modalType)}>
+          <div className={s.Modal}>
+            <SvgIcon className={s.IconClose} name="close" onClick={() => handleHideModal(modalType, modalProps)} size={30} />
+            <Modal onHideModal={() => hideModal(modalType)} {...modalProps} />
+          </div>
+        </ClickOutHandler>
       </div>
     );
   });
