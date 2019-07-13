@@ -34,7 +34,7 @@ async function createContact(ctx) {
 }
 
 async function importFile(ctx) {
-  const strategy = ctx.request.body.strategy || 'allNewStrategy';
+  const strategy = ctx.request.body.strategy;
   const fileData: string = fs.readFileSync(ctx.request.files.file.path, 'utf8');
   const parsedContacts: IContact[] = JSON.parse(fileData).contacts;
 
@@ -48,7 +48,7 @@ async function importFile(ctx) {
   } else if (strategy === 'samePhoneStrategy') {
     baseField = 'phone';
     updateField = 'name';
-  } else if (strategy === 'allNewStrategy') {
+  } else {
     batchUpdate = parsedContacts.map(pc => pc);
   }
 
@@ -71,6 +71,13 @@ async function importFile(ctx) {
   ctx.body = { message: 'Success.' };
 }
 
+async function exportFile(ctx) {
+  const contacts: IContact[] = await ContactsModel.model.findAll({ attributes: ['name', 'phone'] });
+  ctx.body = { contacts };
+  ctx.set('Content-disposition', 'attachment; filename=contacts.json');
+  ctx.set('Content-type', 'application/json');
+}
+
 async function updateContact(ctx) {
   const { id } = ctx.params;
   const { name, phone } = ctx.request.body;
@@ -89,6 +96,7 @@ export const routes = {
   post: {
     '/contacts': createContact,
     '/contacts/importFile': importFile,
+    '/contacts/exportFile': exportFile,
   },
   put: {
     '/contacts/:id': updateContact,

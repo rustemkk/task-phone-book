@@ -129,6 +129,23 @@ paths:
         200:
           description: "File imported"
 
+  /contacts/exportFile:
+    post:
+      tags:
+        - "contacts"
+      summary: "Export contacts to file"
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                strategy:
+                  type: string
+      responses:
+        200:
+          description: "File download"
+
 components:
   schemas:
     Contact:
