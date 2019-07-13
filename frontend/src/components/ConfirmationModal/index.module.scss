@@ -1,0 +1,20 @@
+@import "src/index.scss";
+
+
+.Data {
+  @include text18;
+  text-align: center;
+}
+
+.Bottom {
+  margin: 40px 0 0 0;
+  text-align: center;
+
+  .ButtonDelete {
+    background-color: $color5;
+
+    &:hover {
+      background-color: $color5l;
+    }
+  }
+}

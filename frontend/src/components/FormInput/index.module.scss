@@ -1,0 +1,33 @@
+@import 'src/index.scss';
+
+
+.FormInput {
+  margin: 30px 0 0 0;
+
+  .Label {
+    @include text18;
+    margin: 0 0 15px 21px;
+  }
+
+  .Input {
+    @include text16;
+    width: calc(100% - 40px);
+    padding: 14px 20px;
+    outline: none;
+    border: none;
+    box-shadow: $boxShadow;
+    background-color: #ffffff;
+    -webkit-appearance: none;
+  }
+
+  .InputError {
+    border: 1px solid #ff2700;
+  }
+
+  .Error {
+    @include text12;
+    margin: 10px 0 0 21px;
+    text-align: left;
+    color: $colorError;
+  }
+}

@@ -1,0 +1,15 @@
+@import "src/index.scss";
+
+
+.Bottom {
+  margin: 40px 0 0 0;
+  text-align: center;
+
+  .ButtonDelete {
+    background-color: $color5;
+
+    &:hover {
+      background-color: $color5l;
+    }
+  }
+}

@@ -1,0 +1,41 @@
+import * as contactsConstants from './constants';
+
+
+export const loadContacts = (orderBy, orderDirection, count, offset) => ({
+  type: contactsConstants.LOAD_CONTACTS_REQUEST,
+  orderBy,
+  orderDirection,
+  count,
+  offset,
+})
+
+export const loadContactsSuccess = ({ entities: { contacts }, result }) => ({
+  type: contactsConstants.LOAD_CONTACTS_SUCCESS,
+  contacts,
+  contactsByIds: result,
+});
+
+export const createContact = (contact) => ({
+  type: contactsConstants.CREATE_CONTACT_REQUEST,
+  contact,
+});
+
+export const updateContact = (contact) => ({
+  type: contactsConstants.UPDATE_CONTACT_REQUEST,
+  contact,
+});
+
+export const updateContactSuccess = (contact) => ({
+  type: contactsConstants.UPDATE_CONTACT_SUCCESS,
+  contact,
+});
+
+export const deleteContact = (contactId) => ({
+  type: contactsConstants.DELETE_CONTACT_REQUEST,
+  contactId,
+});
+
+export const deleteContactSuccess = (contactId) => ({
+  type: contactsConstants.DELETE_CONTACT_SUCCESS,
+  contactId,
+});

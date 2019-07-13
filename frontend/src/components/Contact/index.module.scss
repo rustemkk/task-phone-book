@@ -1,0 +1,41 @@
+@import 'src/index.scss';
+
+
+.Contact {
+  height: 50px;
+  width: 250px;
+  margin: 0 20px 10px 0;
+  padding: 10px;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 50px 5px 195px;
+  grid-template-rows: 30px 20px;
+  grid-template-areas: "icon _ name" "icon _ phone";
+  background-color: $color2;
+  box-shadow: $boxShadow;
+  &:hover {
+    background-color: $color2l;
+  }
+
+  .Icon {
+    grid-area: icon;
+    margin: auto;
+
+    .IconPerson {
+      background-color: $colorIcon;
+    }
+  }
+
+  .Name {
+    grid-area: name;
+    @include ellipsis;
+    @include text16;
+    line-height: 30px;
+  }
+
+  .Phone {
+    grid-area: phone;
+    @include text14;
+    line-height: 20px;
+  }
+}

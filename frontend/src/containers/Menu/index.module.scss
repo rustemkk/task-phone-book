@@ -1,0 +1,14 @@
+@import 'src/index.scss';
+
+
+.Menu {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+
+  .MenuButton {
+    width: unset;
+    margin: 0 10px 0 0;
+    padding: 10px 20px;
+  }
+}

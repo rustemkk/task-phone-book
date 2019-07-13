@@ -1,13 +1,70 @@
+// global variables
+$color1: #FEFFFF;
+$color2: #DEF2F1;
+$color2l: #DEF2F1AA;
+$color3: #3AAFA9;
+$color3l: #3AAFA9AA;
+$color4: #2B7A78;
+$color4l: #2B7A78AA;
+$color5: #17252A;
+$color5l: #17252AAA;
+
+$colorBackground: $color1;
+$colorModalBackground: $color2;
+$colorIcon: $color5;
+$colorIconHover: $color5l;
+$colorText: $color5;
+$colorTextLight: $color5l;
+$colorButton: $color4;
+$colorButtonHover: $color4l;
+$colorButtonText: $color1;
+$colorError: #FE4365;
+
+$boxShadow: 0 4px 8px 0 rgba(0, 0, 0, 0.15);
+$gradient1: linear-gradient(330deg, $color5, #3AAFA999);
+
+
+// global styles
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: $colorBackground;
+  font-family: 'Roboto', sans-serif;
+  padding: 20px;
+  text-align: center;
+
+  ::-webkit-input-placeholder {
+    color: $colorTextLight;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+
+// mixins
+@mixin text18() {
+  font-size: 18px;
+  text-align: left;
+  color: $colorText;
+}
+
+@mixin text16() {
+  font-size: 16px;
+  text-align: left;
+  color: $colorText;
+}
+
+@mixin text14() {
+  font-size: 14px;
+  text-align: left;
+  color: $colorText;
+}
+
+@mixin text12() {
+  font-size: 14px;
+  text-align: left;
+  color: $colorText;
+}
+
+@mixin ellipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
 }

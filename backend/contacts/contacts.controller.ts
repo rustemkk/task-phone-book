@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import { toNumber } from 'lodash';
 import { Op } from 'sequelize';
 
 import { IContact } from './contacts.definition';
@@ -9,14 +10,18 @@ async function deleteContact(ctx) {
   const { id } = ctx.params;
   await ContactsModel.delete(id);
 
-  ctx.body = 'Success.';
+  ctx.body = { message: 'Success.' };
 }
 
 async function getContacts(ctx) {
   const { orderBy, orderDirection, offset, count } = ctx.query;
-  const contacts: IContact[] = await ContactsModel.findAll(
-    {}, count, offset, [[orderBy || 'name', orderDirection || 'ASC']]
-  );
+  const contacts: IContact[] = await ContactsModel.model.findAll({
+    attributes: ['id', 'name', 'phone'],
+    where: { isDeleted: { [Op.not]: true } },
+    limit: toNumber(count) || 50,
+    offset: toNumber(offset) || 0,
+    order: [[orderBy || 'name', orderDirection || 'ASC']],
+  });
 
   ctx.body = contacts;
 }
@@ -63,7 +68,7 @@ async function importFile(ctx) {
   }
   await ContactsModel.model.bulkCreate(batchUpdate, { updateOnDuplicate: ['name', 'phone'] });
 
-  ctx.body = 'Success.';
+  ctx.body = { message: 'Success.' };
 }
 
 async function updateContact(ctx) {

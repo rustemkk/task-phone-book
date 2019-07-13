@@ -1,0 +1,20 @@
+@import "src/index.scss";
+
+
+.Button {
+  height: 50px;
+  width: 100%;
+  margin-top: 20px;
+  @include text18;
+  border: none;
+  background-color: $colorButton; 
+  color: $colorButtonText;
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  box-shadow: $boxShadow;
+
+  &:hover {
+    background-color: $colorButtonHover;
+  }
+}
