@@ -25,6 +25,21 @@ const Contacts = ({ contacts, loadContacts }) => {
 
   return (
     <div className={s.Contacts}>
+      <div className={s.ContactsHeader}>
+        <div className={s.Icon}></div>
+        <div className={s.Name}>
+          Name
+        </div>
+        <div className={s.Phone}>
+          Phone number
+        </div>
+        <div className={s.Date}>
+          Created at
+        </div>
+        <div className={s.Date}>
+          Updated at
+        </div>
+      </div>
       {contacts.map(contact =>
         <Contact contact={contact} key={contact.id} />
       )}

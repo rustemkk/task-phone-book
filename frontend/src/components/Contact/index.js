@@ -1,3 +1,4 @@
+import * as moment from 'moment';
 import { PropTypes } from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -20,7 +21,7 @@ const mapDispatchToProps = {
 
 const Contact = ({ contact, showModal }) => {
   return (
-    <span className={s.Contact} onClick={() => showModal(CONTACT_MODAL, { contactId: contact.id })}>
+    <div className={s.Contact} onClick={() => showModal(CONTACT_MODAL, { contactId: contact.id })}>
       <div className={s.Icon}>
         <SvgIcon className={s.IconPerson} name="person" size={30} />
       </div>
@@ -30,7 +31,13 @@ const Contact = ({ contact, showModal }) => {
       <div className={s.Phone}>
         {contact.phone}
       </div>
-    </span>
+      <div className={s.Date}>
+        {moment(contact.createdAt).format('HH:mm DD/MM/YYYY')}
+      </div>
+      <div className={s.Date}>
+        {moment(contact.updatedAt).format('HH:mm DD/MM/YYYY')}
+      </div>
+    </div>
   );
 }
 

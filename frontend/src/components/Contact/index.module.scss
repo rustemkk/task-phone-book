@@ -2,15 +2,12 @@
 
 
 .Contact {
-  height: 50px;
-  width: 250px;
-  margin: 0 20px 10px 0;
+  height: 30px;
+  margin-bottom: 10px;
   padding: 10px;
   cursor: pointer;
   display: grid;
-  grid-template-columns: 50px 5px 195px;
-  grid-template-rows: 30px 20px;
-  grid-template-areas: "icon _ name" "icon _ phone";
+  grid-template-columns: 5% 40% 25% 15% 15%;
   background-color: $color2;
   box-shadow: $boxShadow;
   &:hover {
@@ -18,7 +15,7 @@
   }
 
   .Icon {
-    grid-area: icon;
+    min-width: 30px;
     margin: auto;
 
     .IconPerson {
@@ -27,15 +24,24 @@
   }
 
   .Name {
-    grid-area: name;
+    line-height: 30px;
+    min-width: 150px;
+    padding: 0 10px;
     @include ellipsis;
     @include text16;
-    line-height: 30px;
   }
 
   .Phone {
-    grid-area: phone;
+    line-height: 30px;
+    min-width: 150px;
+    padding: 0 10px;
     @include text14;
-    line-height: 20px;
+  }
+
+  .Date {
+    line-height: 30px;
+    min-width: 150px;
+    padding: 0 10px;
+    @include text14;
   }
 }

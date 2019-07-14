@@ -17,7 +17,6 @@ async function deleteContact(ctx) {
 async function getContacts(ctx) {
   const { orderBy, orderDirection, offset, count } = ctx.query;
   const contacts: IContact[] = await ContactsModel.model.findAll({
-    attributes: ['id', 'name', 'phone'],
     where: { isDeleted: { [Op.not]: true } },
     limit: toNumber(count) || 50,
     offset: toNumber(offset) || 0,

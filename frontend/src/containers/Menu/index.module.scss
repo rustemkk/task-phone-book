@@ -4,7 +4,7 @@
 .Menu {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  padding-top: 80px !important;
 
   .MenuItemContainer{
     position: relative;
@@ -37,7 +37,7 @@
         top: 10px;
         left: 10px;
         display: inline-block !important;
-        background-color: $colorIcon;
+        background-color: $color1;
         margin-right: 20px;
       }
 
