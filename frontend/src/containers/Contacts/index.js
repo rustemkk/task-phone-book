@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import Contact from 'components/Contact';
-import Menu from 'containers/Menu';
 import { loadContacts } from 'modules/contacts/actions';
 import { getAllContacts } from 'modules/contacts/selectors';
 
@@ -25,14 +24,11 @@ const Contacts = ({ contacts, loadContacts }) => {
   }, [loadContacts]);
 
   return (
-    <>
-      <Menu />
-      <div className={s.Contacts}>
-        {contacts.map(contact =>
-          <Contact contact={contact} key={contact.id} />
-        )}
-      </div>
-    </>
+    <div className={s.Contacts}>
+      {contacts.map(contact =>
+        <Contact contact={contact} key={contact.id} />
+      )}
+    </div>
   );
 }
 

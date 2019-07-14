@@ -46,3 +46,7 @@ export const importContactsFromFile = (strategy, file) => ({
   strategy,
   file,
 });
+
+export const exportContactsToFile = () => ({
+  type: contactsConstants.EXPORT_CONTACTS_TO_FILE_REQUEST,
+});

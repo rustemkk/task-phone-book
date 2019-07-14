@@ -26,10 +26,10 @@ $gradient1: linear-gradient(330deg, $color5, #3AAFA999);
 
 // global styles
 body {
+  height: 100vh;
+  margin: 0;
   background-color: $colorBackground;
   font-family: 'Roboto', sans-serif;
-  padding: 20px;
-  text-align: center;
 
   ::-webkit-input-placeholder {
     color: $colorTextLight;
@@ -38,6 +38,11 @@ body {
 
 
 // mixins
+@mixin text20() {
+  font-size: 18px;
+  text-align: left;
+  color: $colorText;
+}
 @mixin text18() {
   font-size: 18px;
   text-align: left;

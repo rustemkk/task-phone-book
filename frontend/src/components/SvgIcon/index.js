@@ -6,8 +6,10 @@ import React from 'react';
 const icons = [
   'arrowDown',
   'close',
+  'download',
   'person',
   'personPlus',
+  'upload',
 ].reduce((acc, curr) => ({ ...acc, [curr]: require(`./svg/${curr}.svg`) }), {});
 
 const SvgIcon = ({ className, name, onClick, size }) => (

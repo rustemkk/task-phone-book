@@ -20,7 +20,7 @@ const mapDispatchToProps = {
 
 const Contact = ({ contact, showModal }) => {
   return (
-    <div className={s.Contact} onClick={() => showModal(CONTACT_MODAL, { contactId: contact.id })}>
+    <span className={s.Contact} onClick={() => showModal(CONTACT_MODAL, { contactId: contact.id })}>
       <div className={s.Icon}>
         <SvgIcon className={s.IconPerson} name="person" size={30} />
       </div>
@@ -30,7 +30,7 @@ const Contact = ({ contact, showModal }) => {
       <div className={s.Phone}>
         {contact.phone}
       </div>
-    </div>
+    </span>
   );
 }
 

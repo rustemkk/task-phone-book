@@ -3,7 +3,7 @@ import { normalize } from 'normalizr';
 
 import * as modalActions from 'modules/modals/actions';
 import * as modalsConstants from 'modules/modals/constants';
-import { callAPI } from 'utils';
+import { callAPI, downloadURI } from 'utils';
 
 import * as contactsActions from './actions';
 import * as contactsConstants from './constants';
@@ -58,12 +58,19 @@ function* importContactsFromFileTask({ strategy, file }) {
     const formData = new FormData();
     formData.append('strategy', strategy);
     formData.append('file', file);
-    const res = yield callAPI('POST', '/contacts/importFile', formData);
-    console.log('saga res', res);
+    yield callAPI('POST', '/contacts/importFile', formData);
     yield put(contactsActions.loadContacts());
     yield put(modalActions.hideModal(modalsConstants.IMPORT_MODAL));
   } catch (err) {
     console.log('importContactsFromFileTaskError', err);
+  }
+}
+
+function exportContactsToFileTask() {
+  try {
+    downloadURI('/contacts/exportFile');
+  } catch (err) {
+    console.log('exportContactsToFileTaskError', err);
   }
 }
 
@@ -87,10 +94,15 @@ function* watchImportContactsFromFile() {
   yield takeEvery(contactsConstants.IMPORT_CONTACTS_FROM_FILE_REQUEST, importContactsFromFileTask)
 }
 
+function* watchExportContactsToFile() {
+  yield takeEvery(contactsConstants.EXPORT_CONTACTS_TO_FILE_REQUEST, exportContactsToFileTask)
+}
+
 export default [
   watchLoadContacts(),
   watchCreateContact(),
   watchUpdateContact(),
   watchDeleteContact(),
   watchImportContactsFromFile(),
+  watchExportContactsToFile(),
 ];

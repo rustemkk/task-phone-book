@@ -4,6 +4,7 @@ import { Op } from 'sequelize';
 
 import { IContact } from './contacts.definition';
 import ContactsModel from './contacts.model';
+import contactsModel from './contacts.model';
 
 
 async function deleteContact(ctx) {
@@ -34,7 +35,7 @@ async function createContact(ctx) {
 }
 
 async function importFile(ctx) {
-  const strategy = ctx.request.body.strategy;
+  const strategy = ctx.request.body.strategy || 'allNewStrategy';
   const fileData: string = fs.readFileSync(ctx.request.files.file.path, 'utf8');
   const parsedContacts: IContact[] = JSON.parse(fileData).contacts;
 
@@ -48,7 +49,7 @@ async function importFile(ctx) {
   } else if (strategy === 'samePhoneStrategy') {
     baseField = 'phone';
     updateField = 'name';
-  } else {
+  } else if (strategy === 'allNewStrategy') {
     batchUpdate = parsedContacts.map(pc => pc);
   }
 
@@ -92,11 +93,11 @@ export const routes = {
   },
   get: {
     '/contacts': getContacts,
+    '/contacts/exportFile': exportFile,
   },
   post: {
     '/contacts': createContact,
     '/contacts/importFile': importFile,
-    '/contacts/exportFile': exportFile,
   },
   put: {
     '/contacts/:id': updateContact,

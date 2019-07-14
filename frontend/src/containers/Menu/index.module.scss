@@ -3,12 +3,47 @@
 
 .Menu {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-bottom: 20px;
 
-  .MenuButton {
-    width: unset;
-    margin: 0 10px 0 0;
-    padding: 10px 20px;
+  .MenuItemContainer{
+    position: relative;
+    height: 70px;
+    width: 70px;
+    margin-bottom: 10px;
+
+    .MenuItem {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      height: 70px;
+      line-height: 70px;
+      width: 70px;
+      @include text20;
+      background-color: $colorButton; 
+      color: $colorButtonText;
+      cursor: pointer;
+      box-shadow: $boxShadow;
+      text-transform: uppercase;
+      overflow: hidden;
+      white-space: nowrap;
+      &:hover {
+        width: unset;
+      }
+
+      .IconPersonPlus {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        display: inline-block !important;
+        background-color: $colorIcon;
+        margin-right: 20px;
+      }
+
+      .MenuItemLabel{ 
+        margin: 0 20px 0 80px;
+      }
+    }
   }
 }

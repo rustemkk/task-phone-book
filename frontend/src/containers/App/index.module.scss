@@ -1,0 +1,13 @@
+@import 'src/index.scss';
+
+
+.App {
+  height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+
+  > div {
+    padding: 10px;
+  }
+}

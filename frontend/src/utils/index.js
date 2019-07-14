@@ -8,17 +8,6 @@ export const callAPI = (method, path, body = {}) => {
     });
   }
 
-  // console.log(1, method, path, body);
-  // console.log(2, `${backendUrl}${path}`);
-  // console.log(3, {
-  //   method,
-  //   headers: {
-  //     'Accept': 'application/json',
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: method === 'POST' ? JSON.stringify(body) : undefined
-  // });
-
   return fetch(`${backendUrl}${path}`, {
     method,
     headers: {
@@ -29,3 +18,12 @@ export const callAPI = (method, path, body = {}) => {
   })
     .then(res => res.json());
 }
+
+export const downloadURI = (path, name) => {
+  let link = document.createElement('a');
+  link.href = `${backendUrl}${path}`;
+  link.download = name;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};

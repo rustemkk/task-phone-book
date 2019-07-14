@@ -1,7 +1,7 @@
 module.exports = {
   development: {
-    username: 'xxx',
-    password: 'xxx',
+    username: 'rustemk',
+    password: '4100',
     database: 'phone_book',
     host: 'localhost',
     dialect: 'mysql',
@@ -9,8 +9,8 @@ module.exports = {
     port: '3306'
   },
   test: {
-    username: 'xxx',
-    password: 'xxx',
+    username: 'rustemk',
+    password: '4100',
     database: 'phone_book_test',
     host: 'localhost',
     dialect: 'mysql',
