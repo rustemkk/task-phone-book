@@ -72,7 +72,10 @@ async function importFile(ctx) {
 }
 
 async function exportFile(ctx) {
-  const contacts: IContact[] = await ContactsModel.model.findAll({ attributes: ['name', 'phone'] });
+  const contacts: IContact[] = await ContactsModel.model.findAll({
+    where: { isDeleted: { [Op.not]: true } },
+    attributes: ['name', 'phone'],
+  });
   ctx.body = { contacts };
   ctx.set('Content-disposition', 'attachment; filename=contacts.json');
   ctx.set('Content-type', 'application/json');
