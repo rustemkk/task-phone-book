@@ -62,11 +62,11 @@ async function importFile(ctx) {
       if (!existingContact) {
         batchUpdate.push(parsedContact);
       } else if (existingContact[updateField] !== parsedContact.phone) {
-        batchUpdate.push({ ...existingContact, [updateField]: parsedContact[updateField] });
+        batchUpdate.push({ ...existingContact, [updateField]: parsedContact[updateField], updatedAt: new Date() });
       }
     });
   }
-  await ContactsModel.model.bulkCreate(batchUpdate, { updateOnDuplicate: ['name', 'phone'] });
+  await ContactsModel.model.bulkCreate(batchUpdate, { updateOnDuplicate: ['name', 'phone', 'updatedAt'] });
 
   ctx.body = { message: 'Success.' };
 }
