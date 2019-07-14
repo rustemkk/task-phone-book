@@ -3,10 +3,13 @@ import { createSelector } from 'reselect';
 
 
 export const getContactsEntities = (state) =>
-  g(state, 'contacts.contacts', {});
+  g(state, 'contacts.contacts');
 
 export const getContactsByIds = (state) =>
-  g(state, 'contacts.contactsByIds', []);
+  g(state, 'contacts.contactsByIds');
+
+export const getStatus = state =>
+  g(state, 'contacts.status');
 
 export const getAllContacts = createSelector(
   getContactsEntities,

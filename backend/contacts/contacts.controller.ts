@@ -34,7 +34,7 @@ async function createContact(ctx) {
 }
 
 async function importFile(ctx) {
-  const strategy = ctx.request.body.strategy || 'allNewStrategy';
+  const strategy = ctx.request.body.strategy;
   const fileData: string = fs.readFileSync(ctx.request.files.file.path, 'utf8');
   const parsedContacts: IContact[] = JSON.parse(fileData).contacts;
 

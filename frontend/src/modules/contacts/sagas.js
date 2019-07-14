@@ -10,16 +10,16 @@ import * as contactsConstants from './constants';
 import { contactsSchema } from './schemas';
 
 
-function* loadContactsTask({ orderBy, orderDirection, count, offset }) {
+function* loadContactsTask({ orderBy, orderDirection, offset }) {
   try {
-    let url = '/contacts?';
+    console.log('offset', offset);
+    let url = '/contacts?&count=20';
     // url += orderBy ? `&orderBy=${orderBy}` : '';
     // url += orderDirection ? `&orderDirection=${orderDirection}` : '';
-    // url += count ? `&count=${count}` : '';
-    // url += offset ? `&offset=${offset}` : '';
+    url += offset ? `&offset=${offset}` : '';
     const contacts = yield callAPI('GET', url);
     const normalized = normalize(contacts, contactsSchema);
-    yield put(contactsActions.loadContactsSuccess(normalized, true));
+    yield put(contactsActions.loadContactsSuccess(normalized, !offset));
   } catch (err) {
     console.log('loadContactsTaskError', err);
   }

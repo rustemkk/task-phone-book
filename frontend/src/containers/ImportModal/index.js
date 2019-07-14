@@ -20,7 +20,7 @@ const ImportModal = ({ importContactsFromFile, onHideModal }) => {
   const inputFileRef = useRef();
 
   const handleChange = (e) => {
-    importContactsFromFile(strategy, get(e, 'target.files.0'));
+    importContactsFromFile(strategy || 'allNewStrategy', get(e, 'target.files.0'));
   }
 
   return (

@@ -1,11 +1,11 @@
 import * as contactsConstants from './constants';
 
 
-export const loadContacts = (orderBy, orderDirection, count, offset) => ({
+export const loadContacts = (offset) => ({
+  // export const loadContacts = (orderBy, orderDirection, offset) => ({
   type: contactsConstants.LOAD_CONTACTS_REQUEST,
-  orderBy,
-  orderDirection,
-  count,
+  // orderBy,
+  // orderDirection,
   offset,
 })
 

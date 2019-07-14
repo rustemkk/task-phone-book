@@ -26,7 +26,21 @@ const contactsByIds = (state = [], action) => {
   }
 };
 
+export const status = (state = { loading: false, loaded: false }, action) => {
+  switch (action.type) {
+    case contactsConstants.LOAD_CONTACTS_REQUEST:
+      return !action.offset ? { isLoading: true, isLoaded: false } : { ...state, isLoading: true };
+    case contactsConstants.LOAD_CONTACTS_SUCCESS: {
+      console.log(action.contactsByIds.length);
+      return { isLoading: false, isLoaded: action.contactsByIds.length < 20 };
+    }
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   contacts,
   contactsByIds,
+  status,
 });
