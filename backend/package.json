@@ -23,7 +23,7 @@
     "mocha": "^6.1.4",
     "mysql2": "^1.6.5",
     "nodemon": "^1.19.1",
-    "sequelize": "^5.10.0",
+    "sequelize": "^5.15.1",
     "sequelize-cli": "^5.5.0",
     "supertest": "^4.0.2",
     "ts-mocha": "^6.0.0",
