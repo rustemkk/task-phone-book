@@ -8,8 +8,8 @@
 
   .MenuItemContainer{
     position: relative;
-    height: 70px;
-    width: 70px;
+    height: 50px;
+    width: 50px;
     margin-bottom: 10px;
 
     .MenuItem {
@@ -17,9 +17,9 @@
       top: 0;
       left: 0;
       z-index: 1;
-      height: 70px;
-      line-height: 70px;
-      width: 70px;
+      height: 50px;
+      line-height: 50px;
+      width: 50px;
       @include text20;
       background-color: $colorButton; 
       color: $colorButtonText;

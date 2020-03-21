@@ -20,19 +20,19 @@ const Menu = ({ exportContactsToFile, showModal }) => {
     <div className={s.Menu}>
       <div className={s.MenuItemContainer} onClick={() => showModal(modalsConstants.CONTACT_MODAL)}>
         <div className={s.MenuItem}>
-          <SvgIcon className={s.IconPersonPlus} name="personPlus" size={50} />
+          <SvgIcon className={s.IconPersonPlus} name="personPlus" size={30} />
           <span className={s.MenuItemLabel}>Create contact</span>
         </div>
       </div>
       <div className={s.MenuItemContainer} onClick={() => showModal(modalsConstants.IMPORT_MODAL)}>
         <div className={s.MenuItem}>
-          <SvgIcon className={s.IconPersonPlus} name="upload" size={50} />
+          <SvgIcon className={s.IconPersonPlus} name="upload" size={30} />
           <span className={s.MenuItemLabel}>Import contacts from file</span>
         </div>
       </div>
       <div className={s.MenuItemContainer} onClick={() => exportContactsToFile()}>
         <div className={s.MenuItem}>
-          <SvgIcon className={s.IconPersonPlus} name="download" size={50} />
+          <SvgIcon className={s.IconPersonPlus} name="download" size={30} />
           <span className={s.MenuItemLabel}>Export contacts to file</span>
         </div>
       </div>

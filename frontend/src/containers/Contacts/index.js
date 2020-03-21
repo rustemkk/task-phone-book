@@ -1,4 +1,3 @@
-import { get } from 'lodash';
 import { PropTypes } from 'prop-types';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
@@ -61,8 +60,8 @@ const Contacts = ({ contacts, loadContacts, status: { isLoaded, isLoading } }) =
 
 Contacts.propTypes = {
   contacts: PropTypes.array.isRequired,
-  status: PropTypes.object.isRequired,
   loadContacts: PropTypes.func.isRequired,
+  status: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Contacts);
